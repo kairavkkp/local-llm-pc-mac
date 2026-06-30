@@ -12,14 +12,13 @@ Self-hosted code assistant: models run on the **PC** (AMD RX 9070 XT, 16GB), too
   └──────────────────┘              └──────────────────────┘
 ```
 
-## Connection details (fill these in)
+## Connection details
 
 | Field        | Value                          |
 |--------------|--------------------------------|
-| PC hostname  | `__________.local`             |
-| PC IP        | `192.168.___.___` (reserved)   |
+| PC hostname  | `Kairav.local`             |
 | Ollama port  | `11434`                        |
-| Base URL     | `http://__________:11434`      |
+| Base URL     | `http://Kairav.local:11434`      |
 
 ---
 
