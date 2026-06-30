@@ -1,2 +1,2 @@
-export OLLAMA_API_BASE=http://Kairav.local:11434
-aider --model ollama_chat/devstral:latest
+export OLLAMA_API_BASE=http://kairav:11434
+aider --model ollama_chat/devstral
