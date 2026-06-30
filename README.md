@@ -49,10 +49,12 @@ If it falls back to CPU, see Troubleshooting below.
 
 ### 3. Pull models
 ```powershell
-ollama pull devstral            # agentic chat/edit (~14GB)
-ollama pull qwen2.5-coder:3b    # fast autocomplete (FIM)
-ollama pull nomic-embed-text    # codebase embeddings
-ollama list                     # note the EXACT tag, e.g. devstral:24b
+ollama pull devstral              # best coding/agentic chat (~14GB Q4 — fills VRAM)
+ollama pull qwen2.5-coder:14b    # lighter coding model, snappy edits (~9GB Q4)
+ollama pull deepseek-r1:14b      # best reasoning at this size (~9GB Q4)
+ollama pull qwen2.5-coder:7b     # fast FIM autocomplete (~5GB Q4)
+ollama pull nomic-embed-text     # codebase embeddings (~0.3GB)
+ollama list                       # note the EXACT tag for each, e.g. devstral:24b
 ```
 
 ### 4. Expose Ollama on all interfaces
@@ -144,3 +146,25 @@ Keep models under ~14GB after quantization so they fit fully in 16GB VRAM.
   instead of the `100.x` number. Stable forever, survives everything.
 - **aider context window:** Ollama defaults to a small context. For repo-scale work,
   set `OLLAMA_CONTEXT_LENGTH=16384` on the PC and use `--map-tokens 2048` in aider.
+
+## Using Continue on VSCode
+
+1. **Install the Continue extension**:
+   - Open Visual Studio Code.
+   - Go to the Extensions view by clicking on the Extensions icon in the Activity Bar or pressing `Ctrl+Shift+X`.
+   - Search for "Continue" and install it.
+
+2. **Configure Continue with your Ollama API Base URL**:
+   - Once installed, open the Command Palette (`F1` or `Ctrl+Shift+P`).
+   - Type `Continue: Open Settings` and select it.
+   - In the settings file that opens, add or update the following lines to point to your Ollama server:
+     ```yaml
+     apiBase: "http://kairav:11434"
+     ```
+   - Save the changes. Refere `config.yaml` in the repo and adjust as needed.
+
+3. **Start using Continue**:
+   - Open a file in VSCode where you want code assistance.
+   - Use the Command Palette to open the `Continue` chat or simply start typing, and the extension will provide suggestions and completions based on your configuration.
+
+For further details, refer to the [official Continue documentation](https://github.com/continue-dev/continue-vscode).

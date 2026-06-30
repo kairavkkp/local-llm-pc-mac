@@ -1,0 +1,66 @@
+name: Local Assistant
+version: 1.0.0
+schema: v1
+models:
+  # --- PC: RX 9070 XT, 16GB VRAM, via Tailscale ---
+
+  # --- Local Mac fallbacks (no apiBase) ---
+  - name: Llama 3.1 8B
+    provider: ollama
+    model: llama3.1:8b
+    apiBase: http://kairav:11434
+    roles:
+      - chat
+      - edit
+      - apply
+
+  # Best coding / agentic edits (~14GB Q4 — fills VRAM, highest quality)
+  - name: Devstral 24B
+    provider: ollama
+    model: devstral
+    apiBase: http://kairav:11434
+    roles:
+      - chat
+      - edit
+      - apply
+
+  # Lighter coding model (~9GB Q4) — snappier for quick edits
+  - name: Qwen2.5-Coder 14B
+    provider: ollama
+    model: qwen2.5-coder:14b
+    apiBase: http://kairav:11434
+    roles:
+      - chat
+      - edit
+      - apply
+
+  # Best reasoning model at this size class (~9GB Q4)
+  - name: DeepSeek-R1 14B
+    provider: ollama
+    model: deepseek-r1:14b
+    apiBase: http://kairav:11434
+    roles:
+      - chat
+      - edit
+      - apply
+
+  # Fast FIM autocomplete — big quality jump over 3b, still low latency (~5GB Q4)
+  - name: Qwen2.5-Coder 7B (autocomplete)
+    provider: ollama
+    model: qwen2.5-coder:7b
+    apiBase: http://kairav:11434
+    roles:
+      - autocomplete
+
+  - name: Nomic Embed (PC)
+    provider: ollama
+    model: nomic-embed-text
+    apiBase: http://kairav:11434
+    roles:
+      - embed
+
+context:
+  - provider: code
+  - provider: diff
+  - provider: terminal
+  - provider: codebase
